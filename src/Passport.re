@@ -146,7 +146,7 @@ module Framework = {
   //   "authenticate";
   // [@bs.send]
   // external isAuthorize:
-  //   (Authenticator.t, string, option('d), 'e => unit, 'e) => 'a =
+  //   (Authenticator.t, string, ~id: 'd=?, 'e => unit, 'e) => 'a =
   //   "isAuthorize";
 };
 
@@ -215,19 +215,19 @@ module Authenticator = {
     "authenticate";
 
   [@bs.send]
-  external serializeUser: (('a, ('b, option('c)) => unit) => unit) => unit =
+  external serializeUser: (('a, ('b, ~id: 'c=?) => unit) => unit) => unit =
     "serializeUser";
   [@bs.send]
   external serializeRequestUser:
-    ((Request.t, 'b, ('c, option('d)) => unit) => unit) => unit =
+    ((Request.t, 'b, ('c, ~id: 'd=?) => unit) => unit) => unit =
     "serializeUser";
 
   [@bs.send]
-  external deserializeUser: (('a, ('b, option('c)) => unit) => unit) => unit =
+  external deserializeUser: (('a, ('b, ~id: 'c=?) => unit) => unit) => unit =
     "deserializeUser";
   [@bs.send]
   external deserializeRequestUser:
-    ((Request.t, 'b, ('c, option('d)) => unit) => unit) => unit =
+    ((Request.t, 'b, ('c, ~id: 'd=?) => unit) => unit) => unit =
     "deserializeUser";
 
   [@bs.send]
@@ -239,26 +239,16 @@ module GitlabStrategy = {
   include Strategy;
 
   [@bs.new] [@bs.module "passport-gitlab"]
-  external make_:
+  external make:
     (
-      {
-        .
-        "clientID": string,
-        "clientSecret": string,
-        "callbackURL": string,
-      },
+      ~options: {
+                  .
+                  "clientID": string,
+                  "clientSecret": string,
+                  "callbackURL": string,
+                },
       (string, string, 'a, unit => unit) => unit
     ) =>
     t =
     "GitlabStrategy";
-  let make = (~clientID, ~clientSecret, ~callbackURL="/callback", next) => {
-    make_(
-      {
-        "clientID": clientID,
-        "clientSecret": clientSecret,
-        "callbackURL": callbackURL,
-      },
-      next,
-    );
-  };
 };

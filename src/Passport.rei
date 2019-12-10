@@ -65,18 +65,18 @@ module Authenticator: {
     (t, authenticateOptions, ('a, 'b, 'c, 'd, 'e) => unit) => 'f =
     "authenticate";
   [@bs.send]
-  external serializeUser: (('a, ('b, option('c)) => unit) => unit) => unit =
+  external serializeUser: (('a, ('b, ~id: 'c=?) => unit) => unit) => unit =
     "serializeUser";
   [@bs.send]
   external serializeRequestUser:
-    ((Express.Request.t, 'b, ('c, option('d)) => unit) => unit) => unit =
+    ((Express.Request.t, 'b, ('c, ~id: 'd=?) => unit) => unit) => unit =
     "serializeUser";
   [@bs.send]
-  external deserializeUser: (('a, ('b, option('c)) => unit) => unit) => unit =
+  external deserializeUser: (('a, ('b, ~id: 'c=?) => unit) => unit) => unit =
     "deserializeUser";
   [@bs.send]
   external deserializeRequestUser:
-    ((Express.Request.t, 'b, ('c, option('d)) => unit) => unit) => unit =
+    ((Express.Request.t, 'b, ('c, ~id: 'd=?) => unit) => unit) => unit =
     "deserializeUser";
   [@bs.send]
   external transformAuthInfo: (('a, ('b, 'c) => unit) => unit) => unit =
@@ -91,9 +91,12 @@ module GitlabStrategy: {
     "autentitcate";
   let make:
     (
-      ~clientID: string,
-      ~clientSecret: string,
-      ~callbackURL: string=?,
+      ~options: {
+        .
+        "clientID": string,
+        "clientSecret": string,
+        "callbackURL": string
+      },
       (string, string, 'a, unit => unit) => unit
     ) =>
     t;
