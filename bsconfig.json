@@ -1,0 +1,19 @@
+{
+  "name": "bs-passport",
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "bsc-flags": ["-bs-super-errors", "-bs-no-version-header", "-open Belt"],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": false,
+  "bs-dependencies": ["bs-express"],
+  "bs-dev-dependencies": [],
+  "refmt": 3
+}

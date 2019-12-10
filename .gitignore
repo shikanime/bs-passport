@@ -1,0 +1,13 @@
+*
+
+!/.gitignore
+
+!/bsconfig.json
+!/package.json
+!/yarn.lock
+!/README.md
+
+!/src/
+!/src/**/
+!/src/**/*.re
+!/src/**/*.rei
