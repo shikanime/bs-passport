@@ -238,7 +238,7 @@ module Authenticator = {
 module GitlabStrategy = {
   include Strategy;
 
-  [@bs.new] [@bs.module "passport"]
+  [@bs.new] [@bs.module "passport-gitlab"]
   external make_:
     (
       {
