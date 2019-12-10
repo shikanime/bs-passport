@@ -20,6 +20,8 @@
     "bs-platform": "^7.0.1"
   },
   "dependencies": {
-    "bs-express": "^1.0.0"
+    "bs-express": "^1.0.0",
+    "passport": "^0.4.1",
+    "passport-gitlab2": "^5.0.0"
   }
 }
