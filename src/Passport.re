@@ -17,124 +17,156 @@ module rec App: {
     [@bs.send]
     external initialize: App.Authenticator.t => (. unit) => 'a = "initialize";
     [@bs.send]
-    external initialize1: App.Authenticator.t => (. 'e) => 'a = "initialize";
+    external initialize1: App.Authenticator.t => (. 'c) => 'a = "initialize";
     [@bs.send]
-    external initialize2: App.Authenticator.t => (. 'e, 'f) => 'a =
+    external initialize2: App.Authenticator.t => (. 'c, 'd) => 'a =
       "initialize";
     [@bs.send]
-    external initialize3: App.Authenticator.t => (. 'e, 'f, 'g) => 'a =
+    external initialize3: App.Authenticator.t => (. 'c, 'd, 'e) => 'a =
       "initialize";
     [@bs.send]
-    external initialize4: App.Authenticator.t => (. 'e, 'f, 'g, 'h) => 'a =
+    external initialize4: App.Authenticator.t => (. 'c, 'd, 'e, 'f) => 'a =
       "initialize";
     [@bs.send]
-    external initialize5: App.Authenticator.t => (. 'e, 'f, 'g, 'h, 'i) => 'a =
+    external initialize5: App.Authenticator.t => (. 'c, 'd, 'c, 'd, 'e) => 'a =
       "initialize";
     [@bs.send]
-    external initializeWithOptions: (App.Authenticator.t, 'd) => (. unit) => 'a =
+
+    external initializeWithOptions: (App.Authenticator.t, 'b) => (. unit) => 'a =
       "initialize";
     [@bs.send]
-    external initializeWithOptions1: (App.Authenticator.t, 'd) => (. 'e) => 'a =
+    external initializeWithOptions1: (App.Authenticator.t, 'b) => (. 'c) => 'a =
       "initialize";
     [@bs.send]
     external initializeWithOptions2:
-      (App.Authenticator.t, 'd) => (. 'e, 'f) => 'a =
+      (App.Authenticator.t, 'b) => (. 'c, 'd) => 'a =
       "initialize";
     [@bs.send]
     external initializeWithOptions3:
-      (App.Authenticator.t, 'd) => (. 'e, 'f, 'g) => 'a =
+      (App.Authenticator.t, 'b) => (. 'c, 'd, 'e) => 'a =
       "initialize";
     [@bs.send]
     external initializeWithOptions4:
-      (App.Authenticator.t, 'd) => (. 'e, 'f, 'g, 'h) => 'a =
+      (App.Authenticator.t, 'b) => (. 'c, 'd, 'e, 'f) => 'a =
       "initialize";
     [@bs.send]
     external initializeWithOptions5:
-      (App.Authenticator.t, 'd) => (. 'e, 'f, 'g, 'h, 'i) => 'a =
+      (App.Authenticator.t, 'b) => (. 'c, 'd, 'c, 'd, 'e) => 'a =
       "initialize";
     [@bs.send]
+
+    external authenticate:
+      (App.Authenticator.t, string, unit => complete) => (. unit) => 'a =
+      "authenticate";
+    [@bs.send]
+    external authenticate1:
+      (App.Authenticator.t, string, 'e => complete) => (. 'c) => 'a =
+      "authenticate";
+    [@bs.send]
+    external authenticate2:
+      (App.Authenticator.t, string, ('e, 'f) => complete) => (. 'c, 'd) => 'a =
+      "authenticate";
+    [@bs.send]
+    external authenticate3:
+      (App.Authenticator.t, string, ('c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'e) => 'a =
+      "authenticate";
+    [@bs.send]
+    external authenticate4:
+      (App.Authenticator.t, string, ('c, 'd, 'e, 'f) => complete) =>
+      (. 'c, 'd, 'e, 'f) => 'a =
+      "authenticate";
+    [@bs.send]
+    external authenticate5:
+      (App.Authenticator.t, string, ('c, 'd, 'c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'c, 'd, 'e) => 'a =
+      "authenticate";
+    [@bs.send]
+
     external authenticateWithOptions:
-      (App.Authenticator.t, string, unit => unit, unit) => 'a =
+      (App.Authenticator.t, string, 'b, unit => complete) => (. unit) => 'a =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions1:
-      (App.Authenticator.t, string, 'e => unit, 'e) => 'a =
+      (App.Authenticator.t, string, 'b, 'e => complete) => (. 'c) => 'a =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions2:
-      (App.Authenticator.t, string, [@bs.uncurry] (('e, 'f) => unit)) =>
-      (. 'e, 'f) => 'a =
+      (App.Authenticator.t, string, 'b, ('e, 'f) => complete) =>
+      (. 'c, 'd) => 'a =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions3:
-      (App.Authenticator.t, string, [@bs.uncurry] (('e, 'f, 'g) => unit)) =>
-      (. 'e, 'f, 'g) => 'a =
+      (App.Authenticator.t, string, 'b, ('c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'e) => 'a =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions4:
-      (
-        App.Authenticator.t,
-        string,
-        [@bs.uncurry] (('e, 'f, 'g, 'h) => unit)
-      ) =>
-      (. 'e, 'f, 'g, 'h) => 'a =
+      (App.Authenticator.t, string, 'b, ('c, 'd, 'e, 'f) => complete) =>
+      (. 'c, 'd, 'e, 'f) => 'a =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions5:
-      (
-        App.Authenticator.t,
-        string,
-        [@bs.uncurry] (('e, 'f, 'g, 'h, 'i) => unit)
-      ) =>
-      (. 'e, 'f, 'g, 'h, 'i) => 'a =
+      (App.Authenticator.t, string, 'b, ('c, 'd, 'c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'c, 'd, 'e) => 'a =
       "authenticate";
+
     [@bs.send]
-    external authenticateWithOptionsWithOption:
-      (App.Authenticator.t, string, 'd, unit => unit, unit) => 'a =
-      "authenticate";
+    external authorize:
+      (App.Authenticator.t, string, unit => complete) => (. unit) => 'a =
+      "authorize";
     [@bs.send]
-    external authenticateWithOptionsWithOption1:
-      (App.Authenticator.t, string, 'd, 'e => unit, 'e) => 'a =
-      "authenticate";
+    external authorize1:
+      (App.Authenticator.t, string, 'e => complete) => (. 'c) => 'a =
+      "authorize";
     [@bs.send]
-    external authenticateWithOptionsWithOption2:
-      (App.Authenticator.t, string, 'd, [@bs.uncurry] (('e, 'f) => unit)) =>
-      (. 'e, 'f) => 'a =
-      "authenticate";
+    external authorize2:
+      (App.Authenticator.t, string, ('e, 'f) => complete) => (. 'c, 'd) => 'a =
+      "authorize";
     [@bs.send]
-    external authenticateWithOptionsWithOption3:
-      (
-        App.Authenticator.t,
-        string,
-        'd,
-        [@bs.uncurry] (('e, 'f, 'g) => unit)
-      ) =>
-      (. 'e, 'f, 'g) => 'a =
-      "authenticate";
+    external authorize3:
+      (App.Authenticator.t, string, ('c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'e) => 'a =
+      "authorize";
     [@bs.send]
-    external authenticateWithOptionsWithOption4:
-      (
-        App.Authenticator.t,
-        string,
-        'd,
-        [@bs.uncurry] (('e, 'f, 'g, 'h) => unit)
-      ) =>
-      (. 'e, 'f, 'g, 'h) => 'a =
-      "authenticate";
+    external authorize4:
+      (App.Authenticator.t, string, ('c, 'd, 'e, 'f) => complete) =>
+      (. 'c, 'd, 'e, 'f) => 'a =
+      "authorize";
     [@bs.send]
-    external authenticateWithOptionsWithOption5:
-      (
-        App.Authenticator.t,
-        string,
-        'd,
-        [@bs.uncurry] (('e, 'f, 'g, 'h, 'i) => unit)
-      ) =>
-      (. 'e, 'f, 'g, 'h, 'i) => 'a =
-      "authenticate";
+    external authorize5:
+      (App.Authenticator.t, string, ('c, 'd, 'c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'c, 'd, 'e) => 'a =
+      "authorize";
+
     [@bs.send]
-    external isAuthorize:
-      (App.Authenticator.t, string, ~id: 'd=?, 'e => unit, 'e) => 'a =
-      "isAuthorize";
+    external authorizeWithOptions:
+      (App.Authenticator.t, string, 'b, unit => complete) => (. unit) => 'a =
+      "authorize";
+    [@bs.send]
+    external authorizeWithOptions1:
+      (App.Authenticator.t, string, 'b, 'e => complete) => (. 'c) => 'a =
+      "authorize";
+    [@bs.send]
+    external authorizeWithOptions2:
+      (App.Authenticator.t, string, 'b, ('e, 'f) => complete) =>
+      (. 'c, 'd) => 'a =
+      "authorize";
+    [@bs.send]
+    external authorizeWithOptions3:
+      (App.Authenticator.t, string, 'b, ('c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'e) => 'a =
+      "authorize";
+    [@bs.send]
+    external authorizeWithOptions4:
+      (App.Authenticator.t, string, 'b, ('c, 'd, 'e, 'f) => complete) =>
+      (. 'c, 'd, 'e, 'f) => 'a =
+      "authorize";
+    [@bs.send]
+    external authorizeWithOptions5:
+      (App.Authenticator.t, string, 'b, ('c, 'd, 'c, 'd, 'e) => complete) =>
+      (. 'c, 'd, 'c, 'd, 'e) => 'a =
+      "authorize";
   };
 
   module Authenticator: {
@@ -143,7 +175,7 @@ module rec App: {
     [@bs.new] [@bs.module "passport"] external make: unit => t = "Passport";
 
     [@bs.send] external use: (t, Strategy.t) => t = "use";
-    [@bs.send] external define: (t, string, Strategy.t) => t = "use";
+    [@bs.send] external useNamed: (t, string, Strategy.t) => t = "use";
 
     [@bs.send] external initialize: t => Middleware.t = "initialize";
     [@bs.send]
@@ -160,65 +192,65 @@ module rec App: {
     [@bs.send] external framework: (t, App.Framework.t) => t = "framework";
 
     [@bs.send]
-    external authenticate: (t, string, unit => unit) => 'a = "authenticate";
+    external authenticate: (t, string, unit => complete) => 'a = "authenticate";
     [@bs.send]
-    external authenticate1: (t, string, 'a => unit) => 'b = "authenticate";
+    external authenticate1: (t, string, 'a => complete) => 'b = "authenticate";
     [@bs.send]
-    external authenticate2: (t, string, ('a, 'b) => unit) => 'c =
+    external authenticate2: (t, string, ('a, 'b) => complete) => 'c =
       "authenticate";
     [@bs.send]
-    external authenticate3: (t, string, ('a, 'b, 'c) => unit) => 'd =
+    external authenticate3: (t, string, ('a, 'b, 'c) => complete) => 'd =
       "authenticate";
     [@bs.send]
-    external authenticate4: (t, string, ('a, 'b, 'c, 'd) => unit) => 'e =
+    external authenticate4: (t, string, ('a, 'b, 'c, 'd) => complete) => 'e =
       "authenticate";
     [@bs.send]
-    external authenticate5: (t, string, ('a, 'b, 'c, 'd, 'e) => unit) => 'f =
+    external authenticate5: (t, string, ('a, 'b, 'c, 'd, 'e) => complete) => 'f =
       "authenticate";
 
     [@bs.send]
     external authenticateWithOptions:
-      (t, string, Js.t({..}), unit => unit) => 'a =
+      (t, string, Js.t({..}), unit => complete) => 'a =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions1:
-      (t, string, Js.t({..}), 'a => unit) => 'b =
+      (t, string, Js.t({..}), 'a => complete) => 'b =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions2:
-      (t, string, Js.t({..}), ('a, 'b) => unit) => 'c =
+      (t, string, Js.t({..}), ('a, 'b) => complete) => 'c =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions3:
-      (t, string, Js.t({..}), ('a, 'b, 'c) => unit) => 'd =
+      (t, string, Js.t({..}), ('a, 'b, 'c) => complete) => 'd =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions4:
-      (t, string, Js.t({..}), ('a, 'b, 'c, 'd) => unit) => 'e =
+      (t, string, Js.t({..}), ('a, 'b, 'c, 'd) => complete) => 'e =
       "authenticate";
     [@bs.send]
     external authenticateWithOptions5:
-      (t, string, Js.t({..}), ('a, 'b, 'c, 'd, 'e) => unit) => 'f =
+      (t, string, Js.t({..}), ('a, 'b, 'c, 'd, 'e) => complete) => 'f =
       "authenticate";
 
     [@bs.send]
-    external serializeUser: (('a, ('b, ~id: 'c=?) => unit) => unit) => unit =
+    external serializeUser: (('a, ('b, ~id: 'c=?) => complete) => complete) => unit =
       "serializeUser";
     [@bs.send]
     external serializeRequestUser:
-      ((Request.t, 'b, ('c, ~id: 'd=?) => unit) => unit) => unit =
+      ((Request.t, 'b, ('c, ~id: 'd=?) => complete) => complete) => unit =
       "serializeUser";
 
     [@bs.send]
-    external deserializeUser: (('a, ('b, ~id: 'c=?) => unit) => unit) => unit =
+    external deserializeUser: (('a, ('b, ~id: 'c=?) => complete) => complete) => unit =
       "deserializeUser";
     [@bs.send]
     external deserializeRequestUser:
-      ((Request.t, 'b, ('c, ~id: 'd=?) => unit) => unit) => unit =
+      ((Request.t, 'b, ('c, ~id: 'd=?) => complete) => complete) => unit =
       "deserializeUser";
 
     [@bs.send]
-    external transformAuthInfo: (('a, ('b, 'c) => unit) => unit) => unit =
+    external transformAuthInfo: (('a, ('b, 'c) => complete) => complete) => unit =
       "transformAuthInfo";
   };
 } = App;
@@ -228,6 +260,6 @@ module GitlabStrategy = {
 
   [@bs.new] [@bs.module]
   external make:
-    (~options: Js.t({..}), (string, string, 'a, unit => unit) => unit) => t =
+    (~options: Js.t({..}), (string, string, 'a, unit => complete) => complete) => t =
     "passport-gitlab2";
 };
